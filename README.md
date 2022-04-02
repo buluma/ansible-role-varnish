@@ -114,8 +114,8 @@ This role has been tested on these [container images](https://hub.docker.com/u/b
 
 |container|tags|
 |---------|----|
-|el|7, 8|
-|ubuntu|precise, trusty, xenial, bionic|
+|el|all|
+|ubuntu|all|
 |debian|all|
 
 The minimum version of Ansible required is 2.5, tests have been done to:
