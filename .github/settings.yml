@@ -1,0 +1,8 @@
+---
+#
+# Ansible managed
+#
+repository:
+  description: Varnish for Linux.
+  homepage: https://buluma.github.io/
+  topics: web, varnish, cache, proxy, reverse, performance, loadbalancer, balancer, ansible, molecule, tox, playbook, hacktoberfest
