@@ -1,0 +1,25 @@
+---
+- name: Converge
+  hosts: all
+  become: true
+
+  pre_tasks:
+    - import_tasks: setup.yml
+
+  roles:
+    - role: geerlingguy.varnish
+
+  post_tasks:
+    - name: Check the installed Varnish version.
+      command: varnishd -V
+      register: varnish_version_output
+      failed_when: "varnish_version not in varnish_version_output.stderr"
+      changed_when: false
+      tags: ['skip_ansible_lint']
+
+    - name: Verify Varnish is running on port 80.
+      shell: 'curl -sI localhost:80 | grep -q "Via: .* varnish"'
+      args:
+        warn: false
+      changed_when: false
+      tags: ['skip_ansible_lint']

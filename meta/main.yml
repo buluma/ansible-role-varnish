@@ -1,0 +1,34 @@
+---
+dependencies: []
+
+galaxy_info:
+  role_name: varnish
+  author: Michael Buluma
+  namespace: buluma
+  description: Varnish for Linux.
+  company: "ShadowNet"
+  license: "Apache-2.0"
+  min_ansible_version: 2.5
+  platforms:
+    - name: EL
+      versions:
+        - 7
+        - 8
+    - name: Ubuntu
+      versions:
+        - precise
+        - trusty
+        - xenial
+        - bionic
+    - name: Debian
+      versions:
+        - all
+  galaxy_tags:
+    - web
+    - varnish
+    - cache
+    - proxy
+    - reverse
+    - performance
+    - loadbalancer
+    - balancer
