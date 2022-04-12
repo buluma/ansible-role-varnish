@@ -19,7 +19,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
     - import_tasks: setup.yml
 
   roles:
-    - role: geerlingguy.varnish
+    - role: buluma.varnish
 
   post_tasks:
     - name: Check the installed Varnish version.

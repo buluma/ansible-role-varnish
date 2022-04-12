@@ -1,5 +1,5 @@
 ---
 roles:
-  - name: geerlingguy.varnish
+  - name: buluma.varnish
 collections:
   - name: community.general
