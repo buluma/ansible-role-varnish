@@ -5,4 +5,4 @@
   become: yes
 
   roles:
-    - role: buluma.varnish
+    - role: ansible-role-varnish

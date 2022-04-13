@@ -10,7 +10,7 @@
     - import_tasks: setup.yml
 
   roles:
-    - role: buluma.varnish
+    - role: ansible-role-varnish
 
   post_tasks:
     - name: Check the installed Ansible version.
