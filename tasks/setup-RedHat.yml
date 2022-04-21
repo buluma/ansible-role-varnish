@@ -1,9 +1,14 @@
 ---
-- name: Add jemaloc repository
-  yum_repository:
-    name: jemaloc
-    description: jemaloc YUM repo
-    baseurl: http://download-ib01.fedoraproject.org/pub/epel/$releasever/$basearch/
+- name: Copy rpm file to server
+  copy:
+     # src: http://download-ib01.fedoraproject.org/pub/epel/$releasever/$basearch/
+     src: https://download-ib01.fedoraproject.org/pub/epel/7/x86_64/Packages/j/jemalloc-3.6.0-1.el7.x86_64.rpm
+     dest: /tmp/jemalloc-3.6.0-1.el7.x86_64.rpm
+
+- name: Install package.
+  yum:
+     name: /tmp/jemalloc-3.6.0-1.el7.x86_64.rpm
+     state: present
 
 - name: ensure varnish dependency is installed.
   ansible.builtin.yum:
