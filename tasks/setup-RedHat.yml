@@ -12,7 +12,7 @@
      state: present
   when: ansible_distribution_major_version | int < 8
 
-- name: add Varnish packagecloud.io yum repo.
+- name: add varnish packagecloud.io yum repo.
   ansible.builtin.yum_repository:
      name: varnishcache_{{ varnish_packagecloud_repo }}
      description: Varnish Cache packagecloud.io repository.
@@ -34,7 +34,7 @@
   when: varnish_packagecloud_repo_addition.changed
   tags: ['skip_ansible_lint']
 
-- name: disable varnish AppStream in RHEL 8.
+- name: disable varnish appStream in RHEL 8.
   command: dnf module disable -y varnish
   args:
      warn: false
@@ -43,7 +43,7 @@
      - ansible_distribution_major_version | int == 8
   tags: ['skip_ansible_lint']
 
-- name: ensure Varnish is installed.
+- name: ensure varnish is installed.
   ansible.builtin.yum:
      name: "{{ varnish_package_name }}"
      state: present
