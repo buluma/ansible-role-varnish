@@ -4,11 +4,6 @@
     name: yum-utils
     state: present
 
-- name: ensure varnish dependency (libjemalloc.so.1()(64bit)) is installed.
-  ansible.builtin.yum:
-    name: libjemalloc.so.1()(64bit)
-    state: present
-
 - name: ensure extra varnish dependency on older RHEL versions is installed.
   ansible.builtin.yum:
     name: pygpgme
