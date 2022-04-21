@@ -1,5 +1,6 @@
 ---
 roles:
-  - name: buluma.varnish
+  - name: buluma.bootstrap
+  - name: buluma.systemd
 collections:
   - name: community.general

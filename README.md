@@ -15,9 +15,6 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
   hosts: all
   become: true
 
-  pre_tasks:
-    - import_tasks: setup.yml
-
   roles:
     - role: buluma.varnish
 
@@ -35,6 +32,45 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
         warn: false
       changed_when: false
       tags: ['skip_ansible_lint']
+```
+
+The machine needs to be prepared. In CI this is done using `molecule/default/prepare.yml`:
+```yaml
+---
+- name: Prepare
+  hosts: all
+  gather_facts: no
+  become: yes
+
+  roles:
+    - role: buluma.bootstrap
+    - role: buluma.varnish
+
+  tasks:
+    - name: Update apt cache.
+      apt: update_cache=true cache_valid_time=600
+      when: ansible_os_family == 'Debian'
+
+    - name: Ensure build dependencies are installed (RedHat 7+).
+      yum:
+        name:
+          - logrotate
+          - systemd-sysv
+        state: present
+      when:
+        - ansible_os_family == 'RedHat'
+        - ansible_distribution_major_version >= '7'
+
+    - name: Ensure build dependencies are installed (RedHat < 7).
+      yum:
+        name: logrotate
+        state: present
+      when:
+        - ansible_os_family == 'RedHat'
+        - ansible_distribution_major_version < '7'
+
+    - name: Ensure curl is installed.
+      package: name=curl state=present
 ```
 
 
@@ -99,6 +135,13 @@ varnish_apt_repo: deb https://packagecloud.io/varnishcache/{{ varnish_packageclo
 
 - pip packages listed in [requirements.txt](https://github.com/buluma/ansible-role-varnish/blob/main/requirements.txt).
 
+## [Status of used roles](#status-of-requirements)
+
+The following roles are used to prepare a system. You can prepare your system in another way.
+
+| Requirement | GitHub | GitLab |
+|-------------|--------|--------|
+|[buluma.bootstrap](https://galaxy.ansible.com/buluma/bootstrap)|[![Build Status GitHub](https://github.com/buluma/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-bootstrap/actions)|[![Build Status GitLab ](https://gitlab.com/buluma/ansible-role-bootstrap/badges/master/pipeline.svg)](https://gitlab.com/buluma/ansible-role-bootstrap)|
 
 ## [Context](#context)
 
@@ -127,6 +170,10 @@ The minimum version of Ansible required is 2.5, tests have been done to:
 
 
 If you find issues, please register them in [GitHub](https://github.com/buluma/ansible-role-varnish/issues)
+
+## [Changelog](#changelog)
+
+[Role History](https://github.com/buluma/ansible-role-varnish/blob/master/CHANGELOG.md)
 
 ## [License](#license)
 
