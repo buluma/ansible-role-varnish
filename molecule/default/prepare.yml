@@ -8,7 +8,6 @@
     - role: buluma.bootstrap
     - role: buluma.systemd
     - role: buluma.httpd
-    - role: ansible-role-varnish
 
   tasks:
     - name: update apt cache.
