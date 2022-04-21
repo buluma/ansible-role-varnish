@@ -1,12 +1,20 @@
 # Changelog
 
-## [Unreleased](https://github.com/buluma/ansible-role-varnish/tree/HEAD)
+## [v0.1.4](https://github.com/buluma/ansible-role-varnish/tree/v0.1.4) (2022-04-21)
 
-[Full Changelog](https://github.com/buluma/ansible-role-varnish/compare/v0.1.2...HEAD)
+[Full Changelog](https://github.com/buluma/ansible-role-varnish/compare/v0.1.3...v0.1.4)
+
+**Implemented enhancements:**
+
+- refactor [\#6](https://github.com/buluma/ansible-role-varnish/pull/6) ([buluma](https://github.com/buluma))
 
 **Merged pull requests:**
 
 - Bump actions/setup-python from 3.1.0 to 3.1.2 [\#5](https://github.com/buluma/ansible-role-varnish/pull/5) ([dependabot[bot]](https://github.com/apps/dependabot))
+
+## [v0.1.3](https://github.com/buluma/ansible-role-varnish/tree/v0.1.3) (2022-04-21)
+
+[Full Changelog](https://github.com/buluma/ansible-role-varnish/compare/v0.1.2...v0.1.3)
 
 ## [v0.1.2](https://github.com/buluma/ansible-role-varnish/tree/v0.1.2) (2022-04-21)
 
