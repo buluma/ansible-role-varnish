@@ -18,3 +18,4 @@
         warn: false
       changed_when: false
       tags: ['skip_ansible_lint']
+      ignore_errors: yes  # TODO: final a cleaner way
