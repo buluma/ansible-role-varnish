@@ -10,7 +10,7 @@ name: CI
 
 defaults:
   run:
-    working-directory: 'geerlingguy.varnish'
+    working-directory: 'buluma.varnish'
 
 jobs:
 
@@ -21,7 +21,7 @@ jobs:
       - name: Check out the codebase.
         uses: actions/checkout@v3
         with:
-          path: 'geerlingguy.varnish'
+          path: 'buluma.varnish'
 
       - name: Set up Python 3.
         uses: actions/setup-python@v3.1.2
@@ -56,7 +56,7 @@ jobs:
       - name: Check out the codebase.
         uses: actions/checkout@v3
         with:
-          path: 'geerlingguy.varnish'
+          path: 'buluma.varnish'
 
       - name: Set up Python 3.
         uses: actions/setup-python@v3.1.2

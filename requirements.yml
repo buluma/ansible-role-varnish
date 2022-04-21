@@ -1,5 +1,8 @@
 ---
 roles:
-  - name: geerlingguy.varnish
+  - name: buluma.bootstrap
+  - name: buluma.systemd
+  - name: buluma.core_dependencies
+  - name: buluma.httpd
 collections:
   - name: community.general

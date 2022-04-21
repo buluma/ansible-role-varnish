@@ -23,3 +23,5 @@ platforms:
     pre_build_image: yes
 provisioner:
   name: ansible
+verifier:
+  name: ansible

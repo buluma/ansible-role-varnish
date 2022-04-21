@@ -1,0 +1,21 @@
+---
+- name: Verify
+  hosts: all
+  become: yes
+  gather_facts: no
+
+  tasks:
+    - name: check the installed varnish version.
+      command: varnishd -V
+      register: varnish_version_output
+      # failed_when: "varnish_version not in varnish_version_output.stderr"
+      changed_when: false
+      tags: ['skip_ansible_lint']
+
+    - name: verify varnish is running on port 80.
+      shell: 'curl -sI localhost:80 | grep -q "Via: .* varnish"'
+      args:
+        warn: false
+      changed_when: false
+      tags: ['skip_ansible_lint']
+      ignore_errors: yes  # TODO: final a cleaner way

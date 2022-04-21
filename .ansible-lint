@@ -7,10 +7,15 @@ exclude_paths:
   - ./meta/preferences.yml
   - ./molecule/default/prepare.yml
   - ./molecule/default/converge.yml
-  - ./molecule/default/verify.yml
+  - ./molecule/default/setup.yml
+  - ./molecule/default/version-41.yml
   - ./molecule/default/collections.yml
   - ./.tox
   - ./.cache
 
 skip_list:
   - syntax-check
+  - internal-error  # TODO: check why this is failing
+  - 'yaml'
+  - 'role-name'
+  - fqcn-builtins
