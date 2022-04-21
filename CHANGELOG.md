@@ -1,5 +1,13 @@
 # Changelog
 
+## [Unreleased](https://github.com/buluma/ansible-role-varnish/tree/HEAD)
+
+[Full Changelog](https://github.com/buluma/ansible-role-varnish/compare/v0.1.4...HEAD)
+
+**Merged pull requests:**
+
+- Converge [\#9](https://github.com/buluma/ansible-role-varnish/pull/9) ([buluma](https://github.com/buluma))
+
 ## [v0.1.4](https://github.com/buluma/ansible-role-varnish/tree/v0.1.4) (2022-04-21)
 
 [Full Changelog](https://github.com/buluma/ansible-role-varnish/compare/v0.1.3...v0.1.4)
