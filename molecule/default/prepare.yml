@@ -7,7 +7,7 @@
   roles:
     - role: buluma.bootstrap
     - role: buluma.systemd
-    - role: buluma.core_dependencies
+    - role: buluma.httpd
     - role: ansible-role-varnish
 
   tasks:
