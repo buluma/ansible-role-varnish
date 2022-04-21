@@ -24,10 +24,6 @@ molecule:
         tag: "stretch"
       - image: "debian"
         tag: "bullseye"
-      - image: "enterpriselinux"
-        tag: "latest"
-      - image: "enterpriselinux"
-        tag: "7"
 
 testing:
   script:
