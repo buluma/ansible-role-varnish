@@ -14,10 +14,8 @@ molecule:
   retry: 1
   parallel:
     matrix:
-      - image: "enterpriselinux"
+      - image: "centos-systemd"
         tag: "7"
-      - image: "enterpriselinux"
-        tag: "latest"
       - image: "docker-ubuntu-systemd"
         tag: "latest"
       - image: "docker-ubuntu-systemd"
@@ -31,12 +29,6 @@ molecule:
       - image: "fedora-systemd"
         tag: "34"
       - image: "fedora-systemd"
-        tag: "latest"
-      - image: "amazonlinux"
-        tag: "1"
-      - image: "amazonlinux"
-        tag: "latest"
-      - image: "archlinux"
         tag: "latest"
 
 testing:
