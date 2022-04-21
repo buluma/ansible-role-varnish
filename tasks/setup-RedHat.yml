@@ -1,7 +1,9 @@
 ---
 - name: ensure varnish dependency is installed.
   ansible.builtin.yum:
-    name: yum-utils
+    name:
+      - yum-utils
+      - jemalloc
     state: present
 
 - name: ensure extra varnish dependency on older RHEL versions is installed.

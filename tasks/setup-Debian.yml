@@ -4,6 +4,7 @@
     name:
       - apt-transport-https
       - gnupg2
+      - jemalloc
     state: present
 
 - name: add packagecloud.io Varnish apt key.
