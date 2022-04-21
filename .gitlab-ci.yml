@@ -28,6 +28,16 @@ molecule:
         tag: "latest"
       - image: "debian-systemd"
         tag: "bookworm"
+      - image: "fedora-systemd"
+        tag: "34"
+      - image: "fedora-systemd"
+        tag: "latest"
+      - image: "amazonlinux"
+        tag: "1"
+      - image: "amazonlinux"
+        tag: "latest"
+      - image: "archlinux"
+        tag: "latest"
 
 testing:
   script:
@@ -51,6 +61,16 @@ testing:
         tag: "latest"
       - image: "debian-systemd"
         tag: "bookworm"
+      - image: "fedora-systemd"
+        tag: "34"
+      - image: "fedora-systemd"
+        tag: "latest"
+      - image: "amazonlinux"
+        tag: "1"
+      - image: "amazonlinux"
+        tag: "latest"
+      - image: "archlinux"
+        tag: "latest"
 
 galaxy:
   script:
@@ -76,3 +96,13 @@ role_testing:
         tag: "latest"
       - image: "debian-systemd"
         tag: "bookworm"
+      - image: "fedora-systemd"
+        tag: "34"
+      - image: "fedora-systemd"
+        tag: "latest"
+      - image: "amazonlinux"
+        tag: "1"
+      - image: "amazonlinux"
+        tag: "latest"
+      - image: "archlinux"
+        tag: "latest"

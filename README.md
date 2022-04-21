@@ -17,21 +17,6 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
 
   roles:
     - role: buluma.varnish
-
-  post_tasks:
-    - name: Check the installed Varnish version.
-      command: varnishd -V
-      register: varnish_version_output
-      failed_when: "varnish_version not in varnish_version_output.stderr"
-      changed_when: false
-      tags: ['skip_ansible_lint']
-
-    - name: Verify Varnish is running on port 80.
-      shell: 'curl -sI localhost:80 | grep -q "Via: .* varnish"'
-      args:
-        warn: false
-      changed_when: false
-      tags: ['skip_ansible_lint']
 ```
 
 The machine needs to be prepared. In CI this is done using `molecule/default/prepare.yml`:
@@ -44,14 +29,16 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
 
   roles:
     - role: buluma.bootstrap
+    - role: buluma.systemd
+    - role: buluma.core_dependencies
     - role: buluma.varnish
 
   tasks:
-    - name: Update apt cache.
+    - name: update apt cache.
       apt: update_cache=true cache_valid_time=600
       when: ansible_os_family == 'Debian'
 
-    - name: Ensure build dependencies are installed (RedHat 7+).
+    - name: ensure build dependencies are installed (RedHat 7+).
       yum:
         name:
           - logrotate
@@ -61,7 +48,7 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
         - ansible_os_family == 'RedHat'
         - ansible_distribution_major_version >= '7'
 
-    - name: Ensure build dependencies are installed (RedHat < 7).
+    - name: ensure build dependencies are installed (RedHat < 7).
       yum:
         name: logrotate
         state: present
@@ -69,7 +56,7 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
         - ansible_os_family == 'RedHat'
         - ansible_distribution_major_version < '7'
 
-    - name: Ensure curl is installed.
+    - name: ensure curl is installed.
       package: name=curl state=present
 ```
 
@@ -80,7 +67,7 @@ The default values for the variables are set in `defaults/main.yml`:
 ```yaml
 ---
 varnish_package_name: "varnish"
-varnish_version: "6.4"
+varnish_version: "7.1"
 
 varnish_use_default_vcl: true
 varnish_default_vcl_template_path: default.vcl.j2
@@ -142,6 +129,8 @@ The following roles are used to prepare a system. You can prepare your system in
 | Requirement | GitHub | GitLab |
 |-------------|--------|--------|
 |[buluma.bootstrap](https://galaxy.ansible.com/buluma/bootstrap)|[![Build Status GitHub](https://github.com/buluma/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-bootstrap/actions)|[![Build Status GitLab ](https://gitlab.com/buluma/ansible-role-bootstrap/badges/master/pipeline.svg)](https://gitlab.com/buluma/ansible-role-bootstrap)|
+|[buluma.systemd](https://galaxy.ansible.com/buluma/systemd)|[![Build Status GitHub](https://github.com/buluma/ansible-role-systemd/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-systemd/actions)|[![Build Status GitLab ](https://gitlab.com/buluma/ansible-role-systemd/badges/master/pipeline.svg)](https://gitlab.com/buluma/ansible-role-systemd)|
+|[buluma.core_dependencies](https://galaxy.ansible.com/buluma/core_dependencies)|[![Build Status GitHub](https://github.com/buluma/ansible-role-core_dependencies/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-core_dependencies/actions)|[![Build Status GitLab ](https://gitlab.com/buluma/ansible-role-core_dependencies/badges/master/pipeline.svg)](https://gitlab.com/buluma/ansible-role-core_dependencies)|
 
 ## [Context](#context)
 
@@ -160,6 +149,9 @@ This role has been tested on these [container images](https://hub.docker.com/u/b
 |el|all|
 |ubuntu|all|
 |debian|all|
+|fedora|all|
+|amazon|all|
+|archlinux|all|
 
 The minimum version of Ansible required is 2.5, tests have been done to:
 
