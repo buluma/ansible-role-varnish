@@ -1,4 +1,10 @@
 ---
+- name: Add jemaloc repository
+  yum_repository:
+    name: jemaloc
+    description: jemaloc YUM repo
+    baseurl: http://download-ib01.fedoraproject.org/pub/epel/$releasever/$basearch/
+
 - name: ensure varnish dependency is installed.
   ansible.builtin.yum:
     name:

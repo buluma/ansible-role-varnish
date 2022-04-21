@@ -75,7 +75,7 @@
     mode: 0644
   notify: restart varnish
 
-- name: ensure Varnish services are started and enabled on startup.
+- name: ensure varnish services are started and enabled on startup.
   ansible.builtin.service:
     name: "{{ item }}"
     state: started
@@ -86,7 +86,7 @@
     (ansible_os_family != 'Debian' and ansible_distribution_release != "xenial"))
 
 # See: https://github.com/ansible/ansible/issues/22303
-- name: ensure Varnish services are started and enabled on startup (Xenial specific)
+- name: ensure varnish services are started and enabled on startup (Xenial specific)
   ansible.builtin.service:
     name: "{{ item }}"
     state: started
