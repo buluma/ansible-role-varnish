@@ -3,9 +3,6 @@
   hosts: all
   become: true
 
-  pre_tasks:
-    # - import_tasks: setup.yml
-
   roles:
     - role: ansible-role-varnish
 
