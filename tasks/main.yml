@@ -1,15 +1,15 @@
 ---
 - name: include OS-specific variables.
-  include_vars: "{{ ansible_os_family }}.yml"
+  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
 
 - name: set the packagecloud repository name based on the version.
   ansible.builtin.set_fact:
     varnish_packagecloud_repo: "varnish{{ varnish_version|replace('.', '') }}"
 
-- include_tasks: setup-RedHat.yml
+- ansible.builtin.include_tasks: setup-RedHat.yml
   when: ansible_os_family == 'RedHat'
 
-- include_tasks: setup-Debian.yml
+- ansible.builtin.include_tasks: setup-Debian.yml
   when: ansible_os_family == 'Debian'
 
 - name: ensure Varnish config path exists.

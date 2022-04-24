@@ -30,7 +30,7 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
   roles:
     - role: buluma.bootstrap
     - role: buluma.systemd
-    - role: buluma.core_dependencies
+    - role: buluma.httpd
 
   tasks:
     - name: update apt cache.
@@ -38,7 +38,7 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
       when: ansible_os_family == 'Debian'
 
     - name: ensure build dependencies are installed (RedHat 7+).
-      yum:
+      ansible.builtin.yum:
         name:
           - logrotate
           - systemd-sysv
@@ -48,7 +48,7 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
         - ansible_distribution_major_version >= '7'
 
     - name: ensure build dependencies are installed (RedHat < 7).
-      yum:
+      ansible.builtin.yum:
         name: logrotate
         state: present
       when:
@@ -130,10 +130,11 @@ The following roles are used to prepare a system. You can prepare your system in
 |[buluma.bootstrap](https://galaxy.ansible.com/buluma/bootstrap)|[![Build Status GitHub](https://github.com/buluma/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-bootstrap/actions)|[![Build Status GitLab ](https://gitlab.com/buluma/ansible-role-bootstrap/badges/main/pipeline.svg)](https://gitlab.com/buluma/ansible-role-bootstrap)|
 |[buluma.systemd](https://galaxy.ansible.com/buluma/systemd)|[![Build Status GitHub](https://github.com/buluma/ansible-role-systemd/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-systemd/actions)|[![Build Status GitLab ](https://gitlab.com/buluma/ansible-role-systemd/badges/master/pipeline.svg)](https://gitlab.com/buluma/ansible-role-systemd)|
 |[buluma.core_dependencies](https://galaxy.ansible.com/buluma/core_dependencies)|[![Build Status GitHub](https://github.com/buluma/ansible-role-core_dependencies/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-core_dependencies/actions)|[![Build Status GitLab ](https://gitlab.com/buluma/ansible-role-core_dependencies/badges/main/pipeline.svg)](https://gitlab.com/buluma/ansible-role-core_dependencies)|
+|[buluma.httpd](https://galaxy.ansible.com/buluma/httpd)|[![Build Status GitHub](https://github.com/buluma/ansible-role-httpd/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-httpd/actions)|[![Build Status GitLab ](https://gitlab.com/buluma/ansible-role-httpd/badges/master/pipeline.svg)](https://gitlab.com/buluma/ansible-role-httpd)|
 
 ## [Context](#context)
 
-This role is a part of many compatible roles. Have a look at [the documentation of these roles](https://buluma.co.ke/) for further information.
+This role is a part of many compatible roles. Have a look at [the documentation of these roles](https://buluma.github.io/) for further information.
 
 Here is an overview of related roles:
 
@@ -158,6 +159,15 @@ The minimum version of Ansible required is 2.5, tests have been done to:
 - The current version.
 - The development version.
 
+## [Exceptions](#exceptions)
+
+Some roles can't run on a specific distribution or version. Here are some exceptions.
+
+| variation                 | reason                 |
+|---------------------------|------------------------|
+| alpine | Dependency not available: python_pip |
+| archlinux | version `GLIBC_2.34' not found (required by /usr/lib/libpython3.10.so.1.0)
+ |
 
 
 If you find issues, please register them in [GitHub](https://github.com/buluma/ansible-role-varnish/issues)
