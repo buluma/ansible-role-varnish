@@ -6,10 +6,12 @@
   ansible.builtin.set_fact:
     varnish_packagecloud_repo: "varnish{{ varnish_version|replace('.', '') }}"
 
-- ansible.builtin.include_tasks: setup-RedHat.yml
+- name: include RedHat setup
+  ansible.builtin.include_tasks: setup-RedHat.yml
   when: ansible_os_family == 'RedHat'
 
-- ansible.builtin.include_tasks: setup-Debian.yml
+- name: include Debian setup
+  ansible.builtin.include_tasks: setup-Debian.yml
   when: ansible_os_family == 'Debian'
 
 - name: ensure Varnish config path exists.
