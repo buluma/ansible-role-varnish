@@ -6,6 +6,7 @@
 
 **Merged pull requests:**
 
+- Bump buluma/gh-action-auto-merge-dependabot-updates from 1.0.4 to 1.0.5 [\#11](https://github.com/buluma/ansible-role-varnish/pull/11) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Converge [\#9](https://github.com/buluma/ansible-role-varnish/pull/9) ([buluma](https://github.com/buluma))
 
 ## [v0.1.4](https://github.com/buluma/ansible-role-varnish/tree/v0.1.4) (2022-04-21)
