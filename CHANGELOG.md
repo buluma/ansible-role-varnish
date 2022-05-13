@@ -2,11 +2,20 @@
 
 ## [Unreleased](https://github.com/buluma/ansible-role-varnish/tree/HEAD)
 
-[Full Changelog](https://github.com/buluma/ansible-role-varnish/compare/v0.1.4...HEAD)
+[Full Changelog](https://github.com/buluma/ansible-role-varnish/compare/v0.1.5...HEAD)
+
+**Merged pull requests:**
+
+- os update [\#12](https://github.com/buluma/ansible-role-varnish/pull/12) ([buluma](https://github.com/buluma))
+
+## [v0.1.5](https://github.com/buluma/ansible-role-varnish/tree/v0.1.5) (2022-05-04)
+
+[Full Changelog](https://github.com/buluma/ansible-role-varnish/compare/v0.1.4...v0.1.5)
 
 **Merged pull requests:**
 
 - Bump buluma/gh-action-auto-merge-dependabot-updates from 1.0.4 to 1.0.5 [\#11](https://github.com/buluma/ansible-role-varnish/pull/11) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Testing [\#10](https://github.com/buluma/ansible-role-varnish/pull/10) ([buluma](https://github.com/buluma))
 - Converge [\#9](https://github.com/buluma/ansible-role-varnish/pull/9) ([buluma](https://github.com/buluma))
 
 ## [v0.1.4](https://github.com/buluma/ansible-role-varnish/tree/v0.1.4) (2022-04-21)
