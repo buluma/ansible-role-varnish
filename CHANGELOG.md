@@ -1,8 +1,12 @@
 # Changelog
 
-## [Unreleased](https://github.com/buluma/ansible-role-varnish/tree/HEAD)
+## [v0.1.6](https://github.com/buluma/ansible-role-varnish/tree/v0.1.6) (2022-05-13)
 
-[Full Changelog](https://github.com/buluma/ansible-role-varnish/compare/v0.1.5...HEAD)
+[Full Changelog](https://github.com/buluma/ansible-role-varnish/compare/v0.1.7...v0.1.6)
+
+## [v0.1.7](https://github.com/buluma/ansible-role-varnish/tree/v0.1.7) (2022-05-12)
+
+[Full Changelog](https://github.com/buluma/ansible-role-varnish/compare/v0.1.5...v0.1.7)
 
 **Merged pull requests:**
 
