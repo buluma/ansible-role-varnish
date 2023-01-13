@@ -24,7 +24,7 @@ jobs:
           path: 'buluma.varnish'
 
       - name: Set up Python 3.
-        uses: actions/setup-python@v4.4.0
+        uses: actions/setup-python@v4.5.0
         with:
           python-version: '3.x'
 
@@ -59,7 +59,7 @@ jobs:
           path: 'buluma.varnish'
 
       - name: Set up Python 3.
-        uses: actions/setup-python@v4.4.0
+        uses: actions/setup-python@v4.5.0
         with:
           python-version: '3.x'
 
