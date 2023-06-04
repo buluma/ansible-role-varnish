@@ -1,18 +1,18 @@
 ---
-- name: ensure varnish dependency is installed.
+- name: setup-RedHat | Ensure varnish dependency is installed.
   ansible.builtin.yum:
      name:
         - yum-utils
         # - jemalloc
      state: present
 
-- name: ensure extra varnish dependency on older RHEL versions is installed.
+- name: setup-RedHat | Ensure extra varnish dependency on older RHEL versions is installed.
   ansible.builtin.yum:
      name: pygpgme
      state: present
   when: ansible_distribution_major_version | int < 8
 
-- name: add varnish packagecloud.io yum repo.
+- name: setup-RedHat | Add varnish packagecloud.io yum repo.
   ansible.builtin.yum_repository:
      name: varnishcache_{{ varnish_packagecloud_repo }}
      description: Varnish Cache packagecloud.io repository.
@@ -26,7 +26,7 @@
      priority: "{{ varnish_packagecloud_repo_yum_repository_priority }}"
   register: varnish_packagecloud_repo_addition
 
-- name: refresh yum metadata cache if repo changed.
+- name: setup-RedHat | Refresh yum metadata cache if repo changed.
   command: >
     yum -q makecache -y --disablerepo='*' --enablerepo='varnishcache_{{ varnish_packagecloud_repo }}'
   args:
@@ -34,7 +34,7 @@
   when: varnish_packagecloud_repo_addition.changed
   tags: ['skip_ansible_lint']
 
-- name: disable varnish appStream in RHEL 8.
+- name: setup-RedHat | Disable varnish appStream in RHEL 8.
   command: dnf module disable -y varnish
   args:
      warn: false
@@ -43,7 +43,7 @@
      - ansible_distribution_major_version | int == 8
   tags: ['skip_ansible_lint']
 
-- name: ensure varnish is installed.
+- name: setup-RedHat | Ensure varnish is installed.
   ansible.builtin.yum:
      name: "{{ varnish_package_name }}"
      state: present
