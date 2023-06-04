@@ -29,6 +29,7 @@
 - Bump buluma/gh-action-auto-merge-dependabot-updates from 1.0.4 to 1.0.5 [\#11](https://github.com/buluma/ansible-role-varnish/pull/11) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Testing [\#10](https://github.com/buluma/ansible-role-varnish/pull/10) ([buluma](https://github.com/buluma))
 - Converge [\#9](https://github.com/buluma/ansible-role-varnish/pull/9) ([buluma](https://github.com/buluma))
+- Bump actions/checkout from 2 to 3 [\#2](https://github.com/buluma/ansible-role-varnish/pull/2) ([dependabot[bot]](https://github.com/apps/dependabot))
 
 ## [v0.1.4](https://github.com/buluma/ansible-role-varnish/tree/v0.1.4) (2022-04-21)
 
@@ -60,7 +61,6 @@
 
 **Merged pull requests:**
 
-- Bump actions/checkout from 2 to 3 [\#2](https://github.com/buluma/ansible-role-varnish/pull/2) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump actions/setup-python from 2 to 3.1.0 [\#1](https://github.com/buluma/ansible-role-varnish/pull/1) ([dependabot[bot]](https://github.com/apps/dependabot))
 
 ## [v0.1.0](https://github.com/buluma/ansible-role-varnish/tree/v0.1.0) (2022-04-02)
