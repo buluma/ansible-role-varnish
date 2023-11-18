@@ -1,10 +1,10 @@
-# [varnish](#varnish)
+# [Ansible role varnish](#varnish)
 
 Varnish for Linux.
 
-|GitHub|GitLab|Quality|Downloads|Version|Issues|Pull Requests|
-|------|------|-------|---------|-------|------|-------------|
-|[![github](https://github.com/buluma/ansible-role-varnish/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-varnish/actions)|[![gitlab](https://gitlab.com/shadowwalker/ansible-role-varnish/badges/master/pipeline.svg)](https://gitlab.com/shadowwalker/ansible-role-varnish)|[![quality](https://img.shields.io/ansible/quality/54985)](https://galaxy.ansible.com/buluma/varnish)|[![downloads](https://img.shields.io/ansible/role/d/54985)](https://galaxy.ansible.com/buluma/varnish)|[![Version](https://img.shields.io/github/release/buluma/ansible-role-varnish.svg)](https://github.com/buluma/ansible-role-varnish/releases/)|[![Issues](https://img.shields.io/github/issues/buluma/ansible-role-varnish.svg)](https://github.com/buluma/ansible-role-varnish/issues/)|[![PullRequests](https://img.shields.io/github/issues-pr-closed-raw/buluma/ansible-role-varnish.svg)](https://github.com/buluma/ansible-role-varnish/pulls/)|
+|GitHub|GitLab|Downloads|Version|Issues|Pull Requests|
+|------|------|-------|-------|------|-------------|
+|[![github](https://github.com/buluma/ansible-role-varnish/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-varnish/actions)|[![gitlab](https://gitlab.com/shadowwalker/ansible-role-varnish/badges/master/pipeline.svg)](https://gitlab.com/shadowwalker/ansible-role-varnish)|[![downloads](https://img.shields.io/ansible/role/d/4876)](https://galaxy.ansible.com/buluma/varnish)|[![Version](https://img.shields.io/github/release/buluma/ansible-role-varnish.svg)](https://github.com/buluma/ansible-role-varnish/releases/)|[![Issues](https://img.shields.io/github/issues/buluma/ansible-role-varnish.svg)](https://github.com/buluma/ansible-role-varnish/issues/)|[![PullRequests](https://img.shields.io/github/issues-pr-closed-raw/buluma/ansible-role-varnish.svg)](https://github.com/buluma/ansible-role-varnish/pulls/)|
 
 ## [Example Playbook](#example-playbook)
 
