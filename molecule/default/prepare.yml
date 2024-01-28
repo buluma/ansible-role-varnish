@@ -7,6 +7,7 @@
   roles:
     - role: buluma.bootstrap
     - role: buluma.systemd
+      systemd_default_target: multi-user.target
     - role: buluma.httpd
 
   tasks:
