@@ -30,7 +30,7 @@
   when: >
     (ansible_os_family == 'RedHat' and ansible_distribution_major_version|int < 7) or
     (ansible_os_family == 'Debian' and ansible_distribution_release != "xenial")
-  notify: restart varnish
+  notify: Restart varnish
 
 - name: Copy Debian Jessie/Xenial specific Varnish configs (systemd).
   ansible.builtin.template:
@@ -44,8 +44,8 @@
     (ansible_distribution == 'Debian' and ansible_distribution_version|int >= 8) or
     (ansible_distribution == 'Ubuntu' and ansible_distribution_version.split(".")[0]|int >= 16)
   notify:
-    - reload systemd
-    - restart varnish
+    - Reload systemd
+    - Restart varnish
 
 - name: Copy Varnish configuration (systemd).
   ansible.builtin.template:
@@ -66,7 +66,7 @@
     group: root
     mode: 0644
   when: varnish_use_default_vcl
-  notify: restart varnish
+  notify: Restart varnish
 
 - name: Copy varnish secret.
   ansible.builtin.template:
@@ -75,7 +75,7 @@
     owner: root
     group: root
     mode: 0644
-  notify: restart varnish
+  notify: Restart varnish
 
 - name: Ensure varnish services are started and enabled on startup.
   ansible.builtin.service:
