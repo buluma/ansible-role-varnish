@@ -32,6 +32,7 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
   roles:
     - role: buluma.bootstrap
     - role: buluma.systemd
+      systemd_default_target: multi-user.target
     - role: buluma.httpd
 
   tasks:
@@ -150,7 +151,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/b
 
 |container|tags|
 |---------|----|
-|[Ubuntu](https://hub.docker.com/repository/docker/buluma/ubuntu/general)|focal, bionic|
+|[Ubuntu](https://hub.docker.com/repository/docker/buluma/ubuntu/general)|focal, bionic, jammy|
 |[Debian](https://hub.docker.com/repository/docker/buluma/debian/general)|bullseye|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
