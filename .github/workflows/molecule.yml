@@ -51,8 +51,6 @@ jobs:
             tag: "focal"
           - image: "docker-ubuntu-systemd"
             tag: "bionic"
-          - image: "docker-ubuntu-systemd"
-            tag: "latest"
           - image: "debian-systemd"
             tag: "bullseye"
     steps:
