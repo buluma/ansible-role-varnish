@@ -1,5 +1,14 @@
 # Changelog
 
+## [Unreleased](https://github.com/buluma/ansible-role-varnish/tree/HEAD)
+
+[Full Changelog](https://github.com/buluma/ansible-role-varnish/compare/v0.2.0...HEAD)
+
+**Merged pull requests:**
+
+- Bump release-drafter/release-drafter from 5 to 6 [\#33](https://github.com/buluma/ansible-role-varnish/pull/33) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump actions/setup-python from 4.4.0 to 5.0.0 [\#32](https://github.com/buluma/ansible-role-varnish/pull/32) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [v0.2.0](https://github.com/buluma/ansible-role-varnish/tree/v0.2.0) (2024-01-28)
 
 [Full Changelog](https://github.com/buluma/ansible-role-varnish/compare/v0.1.9...v0.2.0)
