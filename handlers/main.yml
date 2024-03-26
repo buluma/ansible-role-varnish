@@ -4,11 +4,11 @@
 
 - name: Restart varnish
   ansible.builtin.service: name=varnish state=restarted
-  changed_when: no
-  failed_when: no
+  changed_when: false
+  failed_when: false
 
 - name: Restart service cron on centos
   ansible.builtin.systemd:
     state: restarted
-    daemon_reload: yes
+    daemon_reload: true
     name: varnish

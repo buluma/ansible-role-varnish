@@ -50,12 +50,15 @@ jobs:
             tag: "focal"
           - image: "docker-ubuntu-systemd"
             tag: "bionic"
+<<<<<<< HEAD
           - image: "docker-ubuntu-systemd"
             tag: "latest"
           - image: "docker-ubuntu-systemd"
             tag: "lunar"
           - image: "docker-ubuntu-systemd"
             tag: "noble"
+=======
+>>>>>>> 6c7e2d686024a283e85ab543f76f1de6b91c932f
           - image: "debian-systemd"
             tag: "bullseye"
     steps:
