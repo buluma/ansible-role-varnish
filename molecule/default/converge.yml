@@ -8,4 +8,7 @@
       when: ansible_os_family == 'Debian'
 
   roles:
+    - role: buluma.systemd
+      systemd_default_target: multi-user.target
+    - role: buluma.httpd
     - role: ansible-role-varnish
