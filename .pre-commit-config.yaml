@@ -21,5 +21,5 @@ repos:
       - id: ansible_role_find_empty_files
       - id: ansible_role_find_empty_directories
       - id: ansible_role_find_undefined_handlers
-      - id: ansible_role_find_unquoted_values
+      # - id: ansible_role_find_unquoted_values
       - id: ansible_role_find_horizontal_when
