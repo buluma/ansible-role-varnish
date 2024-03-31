@@ -4,8 +4,14 @@
 
 [Full Changelog](https://github.com/buluma/ansible-role-varnish/compare/v0.2.0...HEAD)
 
+**Closed issues:**
+
+- final a cleaner way [\#8](https://github.com/buluma/ansible-role-varnish/issues/8)
+
 **Merged pull requests:**
 
+- Bump actions/setup-python from 5.0.0 to 5.1.0 [\#36](https://github.com/buluma/ansible-role-varnish/pull/36) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump dependabot/fetch-metadata from 1 to 2 [\#35](https://github.com/buluma/ansible-role-varnish/pull/35) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump buluma/dependabot-auto-merge-action from 2.1.1 to 2.1.2 [\#34](https://github.com/buluma/ansible-role-varnish/pull/34) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump release-drafter/release-drafter from 5 to 6 [\#33](https://github.com/buluma/ansible-role-varnish/pull/33) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump actions/setup-python from 4.4.0 to 5.0.0 [\#32](https://github.com/buluma/ansible-role-varnish/pull/32) ([dependabot[bot]](https://github.com/apps/dependabot))
