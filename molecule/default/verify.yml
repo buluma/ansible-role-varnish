@@ -12,8 +12,7 @@
       changed_when: false
       tags: ['skip_ansible_lint']
 
-    - name: verify varnish is running on port 80.
+    - name: Verify Varnish is running on port 80.
       shell: 'curl -sI localhost:80 | grep -q "Via: .* varnish"'
       changed_when: false
       tags: ['skip_ansible_lint']
-      ignore_errors: true  # TODO: final a cleaner way

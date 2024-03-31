@@ -9,26 +9,16 @@
 
   tasks:
     - name: Update apt cache.
-      apt: update_cache=true cache_valid_time=600
+      ansible.builtin.apt: update_cache=true cache_valid_time=600
       when: ansible_os_family == 'Debian'
 
-    - name: Ensure build dependencies are installed (RedHat 7+).
+    - name: Ensure build dependencies are installed.
       ansible.builtin.yum:
         name:
           - logrotate
           - systemd-sysv
         state: present
-      when:
-        - ansible_os_family == 'RedHat'
-        - ansible_distribution_major_version >= '7'
-
-    - name: Ensure build dependencies are installed (RedHat < 7).
-      ansible.builtin.yum:
-        name: logrotate
-        state: present
-      when:
-        - ansible_os_family == 'RedHat'
-        - ansible_distribution_major_version < '7'
+      when: ansible_os_family == 'RedHat'
 
     - name: Ensure curl is installed.
-      package: name=curl state=present
+      ansible.builtin.package: name=curl state=present
