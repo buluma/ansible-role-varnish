@@ -4,6 +4,8 @@
     name:
       - apt-transport-https
       - gnupg2
+      - debian-archive-keyring
+      - curl
     state: present
 
 - name: setup-Debian | Add packagecloud.io varnish apt key.

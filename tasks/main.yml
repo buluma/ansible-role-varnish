@@ -2,6 +2,11 @@
 - name: Include OS-specific variables.
   ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
 
+# - name: Install varnish
+#   ansible.builtin.package:
+#     name: varnish
+#     state: present
+
 - name: Set the packagecloud repository name based on the version.
   ansible.builtin.set_fact:
     varnish_packagecloud_repo: "varnish{{ varnish_version|replace('.', '') }}"
@@ -31,7 +36,7 @@
     (ansible_os_family == 'RedHat' and ansible_distribution_major_version|int < 7) or
     (ansible_os_family == 'Debian' and ansible_distribution_release != "xenial")
   notify: Restart varnish
-
+#
 - name: Copy Debian Jessie/Xenial specific Varnish configs (systemd).
   ansible.builtin.template:
     src: varnish.service.j2
