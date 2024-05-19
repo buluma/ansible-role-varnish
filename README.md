@@ -15,8 +15,17 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 - name: Converge
   hosts: all
   become: true
+  vars:
+    varnish_apt_use_packagecloud: false
+  pre_tasks:
+    - name: Update apt cache.
+      apt: update_cache=true cache_valid_time=600
+      when: ansible_os_family == 'Debian'
 
   roles:
+    - role: buluma.systemd
+      systemd_default_target: multi-user.target
+    - role: buluma.httpd
     - role: buluma.varnish
 ```
 
@@ -31,35 +40,22 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 
   roles:
     - role: buluma.bootstrap
-    - role: buluma.systemd
-      systemd_default_target: multi-user.target
-    - role: buluma.httpd
 
   tasks:
-    - name: update apt cache.
-      apt: update_cache=true cache_valid_time=600
+    - name: Update apt cache.
+      ansible.builtin.apt: update_cache=true cache_valid_time=600
       when: ansible_os_family == 'Debian'
 
-    - name: ensure build dependencies are installed (RedHat 7+).
+    - name: Ensure build dependencies are installed.
       ansible.builtin.yum:
         name:
           - logrotate
           - systemd-sysv
         state: present
-      when:
-        - ansible_os_family == 'RedHat'
-        - ansible_distribution_major_version >= '7'
+      when: ansible_os_family == 'RedHat'
 
-    - name: ensure build dependencies are installed (RedHat < 7).
-      ansible.builtin.yum:
-        name: logrotate
-        state: present
-      when:
-        - ansible_os_family == 'RedHat'
-        - ansible_distribution_major_version < '7'
-
-    - name: ensure curl is installed.
-      package: name=curl state=present
+    - name: Ensure curl is installed.
+      ansible.builtin.package: name=curl state=present
 ```
 
 Also see a [full explanation and example](https://buluma.github.io/how-to-use-these-roles.html) on how to use these roles.
@@ -71,7 +67,8 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 ```yaml
 ---
 varnish_package_name: "varnish"
-varnish_version: "7.1"
+varnish_modules_package_name: ""
+varnish_version: "7.5"
 
 varnish_use_default_vcl: true
 varnish_default_vcl_template_path: default.vcl.j2
@@ -96,6 +93,9 @@ varnishd_extra_options: ""
 varnish_enabled_services:
   - varnish
 
+# Use Packagecloud repo instead of distribution default
+varnish_apt_use_packagecloud: true
+
 # Make sure Packagecloud repo is used on RHEL/CentOS.
 varnish_packagecloud_repo_yum_repository_priority: "1"
 
@@ -103,7 +103,8 @@ varnish_packagecloud_repo_yum_repository_priority: "1"
 varnish_yum_repo_baseurl: "https://packagecloud.io/varnishcache/{{ varnish_packagecloud_repo }}/el/{{ ansible_distribution_major_version|int }}/$basearch"
 
 # Only used on Debian / Ubuntu.
-varnish_apt_repo: "deb https://packagecloud.io/varnishcache/{{ varnish_packagecloud_repo }}/{{ ansible_distribution | lower }}/ {{ ansible_distribution_release }} main"
+varnish_apt_repo: "deb https://packagecloud.io/varnishcache/{{ varnish_packagecloud_repo }}/packages/{{ ansible_distribution | lower }}/ {{ ansible_distribution_release }} main"
+# deb https://packagecloud.io/varnishcache/varnish60lts/$ID/ $VERSION_CODENAME main
 
 # Optionally define additional backends.
 # varnish_backends:
