@@ -1,6 +1,7 @@
 ---
 - name: Reload systemd
-  ansible.builtin.systemd: daemon_reload=true
+  ansible.builtin.systemd:
+    daemon_reload: true
 
 - name: Restart varnish
   ansible.builtin.service: name=varnish state=restarted
