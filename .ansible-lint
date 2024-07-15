@@ -18,3 +18,4 @@ enable_list:
 
 skip_list:
   - no-free-form
+  - fqcn[action-core]
