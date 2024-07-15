@@ -15,12 +15,39 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 - name: Converge
   hosts: all
   become: true
+  gather_facts: true
   vars:
     varnish_apt_use_packagecloud: false
+
   pre_tasks:
     - name: Update apt cache.
-      apt: update_cache=true cache_valid_time=600
+      apt: update_cache=yes cache_valid_time=600
       when: ansible_os_family == 'Debian'
+      changed_when: false
+
+    - name: Check if python3.11 EXTERNALLY-MANAGED file exists
+      ansible.builtin.stat:
+        path: /usr/lib/python3.11/EXTERNALLY-MANAGED
+      register: externally_managed_file_py311
+
+    - name: Rename python3.11 EXTERNALLY-MANAGED file if it exists
+      ansible.builtin.command:
+        cmd: mv /usr/lib/python3.11/EXTERNALLY-MANAGED /usr/lib/python3.11/EXTERNALLY-MANAGED.old
+      when: externally_managed_file_py311.stat.exists
+      args:
+        creates: /usr/lib/python3.11/EXTERNALLY-MANAGED.old
+
+    - name: Check if python3.12 EXTERNALLY-MANAGED file exists
+      ansible.builtin.stat:
+        path: /usr/lib/python3.12/EXTERNALLY-MANAGED
+      register: externally_managed_file_py312
+
+    - name: Rename python3.12 EXTERNALLY-MANAGED file if it exists
+      ansible.builtin.command:
+        cmd: mv /usr/lib/python3.12/EXTERNALLY-MANAGED /usr/lib/python3.12/EXTERNALLY-MANAGED.old
+      when: externally_managed_file_py312.stat.exists
+      args:
+        creates: /usr/lib/python3.12/EXTERNALLY-MANAGED.old
 
   roles:
     - role: buluma.systemd
@@ -152,7 +179,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/b
 
 |container|tags|
 |---------|----|
-|[Ubuntu](https://hub.docker.com/r/buluma/ubuntu)|focal, bionic, jammy, noble|
+|[Ubuntu](https://hub.docker.com/r/buluma/ubuntu)|focal, jammy, noble|
 |[Debian](https://hub.docker.com/r/buluma/debian)|bullseye|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
