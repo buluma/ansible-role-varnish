@@ -1,5 +1,13 @@
 # Changelog
 
+## [Unreleased](https://github.com/buluma/ansible-role-varnish/tree/HEAD)
+
+[Full Changelog](https://github.com/buluma/ansible-role-varnish/compare/v24.3.31...HEAD)
+
+**Closed issues:**
+
+- rebuild action [\#28](https://github.com/buluma/ansible-role-varnish/issues/28)
+
 ## [v24.3.31](https://github.com/buluma/ansible-role-varnish/tree/v24.3.31) (2024-03-31)
 
 [Full Changelog](https://github.com/buluma/ansible-role-varnish/compare/v0.2.0...v24.3.31)
