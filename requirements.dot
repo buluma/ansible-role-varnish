@@ -1,0 +1,15 @@
+digraph PhiloDilemma {
+  label = "Michael Buluma" ;
+  overlap=false
+  {
+    "varnish" [fillcolor=yellow style=filled penwidth=3]
+    "buluma.bootstrap" [fillcolor=green style=filled]
+    "buluma.systemd" [fillcolor=green style=filled]
+    "buluma.core_dependencies" [fillcolor=green style=filled]
+    "buluma.httpd" [fillcolor=green style=filled]
+  }
+  "varnish" -> "buluma.bootstrap"
+  "varnish" -> "buluma.systemd"
+  "varnish" -> "buluma.core_dependencies"
+  "varnish" -> "buluma.httpd"
+}
