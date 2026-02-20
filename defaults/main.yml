@@ -36,7 +36,8 @@ varnish_packagecloud_repo_yum_repository_priority: "1"
 varnish_yum_repo_baseurl: "https://packagecloud.io/varnishcache/{{ varnish_packagecloud_repo }}/el/{{ ansible_distribution_major_version|int }}/$basearch"
 
 # Only used on Debian / Ubuntu.
-varnish_apt_repo: "deb https://packagecloud.io/varnishcache/{{ varnish_packagecloud_repo }}/packages/{{ ansible_distribution | lower }}/ {{ ansible_distribution_release }} main"
+varnish_apt_repo: "deb https://packagecloud.io/varnishcache/{{ varnish_packagecloud_repo }}/packages/{{ ansible_distribution | lower }}/ {{ ansible_distribution_release
+  }} main"
 # deb https://packagecloud.io/varnishcache/varnish60lts/$ID/ $VERSION_CODENAME main
 
 # Optionally define additional backends.

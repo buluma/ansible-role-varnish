@@ -1,11 +1,11 @@
 ---
 - name: setup-RedHat | Ensure Varnish dependency is installed.
-  ansible.builtin.yum:
+  ansible.builtin.dnf:
     name: yum-utils
     state: present
 
 - name: setup-RedHat | Ensure extra Varnish dependency on older RHEL versions is installed.
-  ansible.builtin.yum:
+  ansible.builtin.dnf:
     name: pygpgme
     state: present
   when: ansible_distribution_major_version | int < 8
@@ -29,15 +29,15 @@
   ansible.builtin.command: >
     yum -q makecache -y --disablerepo='*' --enablerepo='varnishcache_{{ varnish_packagecloud_repo }}'
   when: varnish_packagecloud_repo_addition.changed
-  tags: ['skip_ansible_lint']
+  tags: ["skip_ansible_lint"]
 
 - name: setup-RedHat | Ensure Varnish is installed.
-  ansible.builtin.yum:
+  ansible.builtin.dnf:
     name: "{{ varnish_package_name }}"
     state: present
 
 - name: setup-RedHat | Ensure Varnish VMODs are installed.
-  ansible.builtin.yum:
+  ansible.builtin.dnf:
     name: "{{ varnish_modules_package_name }}"
     state: present
   when: varnish_modules_package_name

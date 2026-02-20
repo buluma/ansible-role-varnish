@@ -4,7 +4,9 @@
     daemon_reload: true
 
 - name: Restart varnish
-  ansible.builtin.service: name=varnish state=restarted
+  ansible.builtin.service:
+    name: varnish
+    state: restarted
   changed_when: false
   failed_when: false
 
