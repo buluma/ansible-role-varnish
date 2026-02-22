@@ -1,24 +1,19 @@
----
-- name: Prepare
-  hosts: all
+- become: true
   gather_facts: false
-  become: true
-
+  hosts: all
+  name: Prepare
   roles:
-    - role: buluma.bootstrap
-
+  - role: buluma.bootstrap
   tasks:
-    - name: Update apt cache.
-      ansible.builtin.apt: update_cache=true cache_valid_time=600
-      when: ansible_os_family == 'Debian'
-
-    - name: Ensure build dependencies are installed.
-      ansible.builtin.yum:
-        name:
-          - logrotate
-          - systemd-sysv
-        state: present
-      when: ansible_os_family == 'RedHat'
-
-    - name: Ensure curl is installed.
-      ansible.builtin.package: name=curl state=present
+  - ansible.builtin.apt: update_cache=true cache_valid_time=600
+    name: Update apt cache.
+    when: ansible_os_family == 'Debian'
+  - ansible.builtin.yum:
+      name:
+      - logrotate
+      - systemd-sysv
+      state: present
+    name: Ensure build dependencies are installed.
+    when: ansible_os_family == 'RedHat'
+  - ansible.builtin.package: name=curl state=present
+    name: Ensure curl is installed.

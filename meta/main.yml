@@ -1,19 +1,9 @@
 ---
 dependencies: []
 galaxy_info:
-  role_name: varnish
   author: buluma
-  description: Varnish for Linux.
   company: ShadowNet
-  license: Apache-2.0
-  min_ansible_version: "2.12"
-  platforms:
-    - name: Ubuntu
-      versions:
-        - all
-    - name: Debian
-      versions:
-        - all
+  description: Varnish for Linux.
   galaxy_tags:
     - web
     - varnish
@@ -23,3 +13,13 @@ galaxy_info:
     - performance
     - loadbalancer
     - balancer
+  license: Apache-2.0
+  min_ansible_version: "2.12"
+  platforms:
+    - name: Ubuntu
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+  role_name: varnish
