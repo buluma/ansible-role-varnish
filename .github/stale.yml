@@ -3,10 +3,10 @@ daysUntilClose: 30
 daysUntilStale: 90
 exemptAssignees: false
 exemptLabels:
-  - bug
-  - pinned
-  - security
-  - planned
+- bug
+- pinned
+- security
+- planned
 exemptMilestones: false
 exemptProjects: false
 issues:

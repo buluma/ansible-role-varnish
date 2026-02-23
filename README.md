@@ -12,69 +12,69 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 
 ```yaml
 ---
-  - become: true
-    gather_facts: true
-    hosts: all
-    name: Converge
-    pre_tasks:
-      - apt: update_cache=yes cache_valid_time=600
-        changed_when: false
-        name: Update apt cache.
-        when: ansible_os_family == 'Debian'
-      - ansible.builtin.stat:
-          path: /usr/lib/python3.11/EXTERNALLY-MANAGED
-        name: Check if python3.11 EXTERNALLY-MANAGED file exists
-        register: externally_managed_file_py311
-      - ansible.builtin.command:
-          cmd: mv /usr/lib/python3.11/EXTERNALLY-MANAGED 
-            /usr/lib/python3.11/EXTERNALLY-MANAGED.old
-        args:
-          creates: /usr/lib/python3.11/EXTERNALLY-MANAGED.old
-        name: Rename python3.11 EXTERNALLY-MANAGED file if it exists
-        when: externally_managed_file_py311.stat.exists
-      - ansible.builtin.stat:
-          path: /usr/lib/python3.12/EXTERNALLY-MANAGED
-        name: Check if python3.12 EXTERNALLY-MANAGED file exists
-        register: externally_managed_file_py312
-      - ansible.builtin.command:
-          cmd: mv /usr/lib/python3.12/EXTERNALLY-MANAGED 
-            /usr/lib/python3.12/EXTERNALLY-MANAGED.old
-        args:
-          creates: /usr/lib/python3.12/EXTERNALLY-MANAGED.old
-        name: Rename python3.12 EXTERNALLY-MANAGED file if it exists
-        when: externally_managed_file_py312.stat.exists
-    roles:
-      - role: buluma.systemd
-        systemd_default_target: multi-user.target
-      - role: buluma.httpd
-      - role: buluma.varnish
-    vars:
-      varnish_apt_use_packagecloud: false
+- become: true
+  gather_facts: true
+  hosts: all
+  name: Converge
+  pre_tasks:
+  - apt: update_cache=yes cache_valid_time=600
+    changed_when: false
+    name: Update apt cache.
+    when: ansible_os_family == 'Debian'
+  - ansible.builtin.stat:
+      path: /usr/lib/python3.11/EXTERNALLY-MANAGED
+    name: Check if python3.11 EXTERNALLY-MANAGED file exists
+    register: externally_managed_file_py311
+  - ansible.builtin.command:
+      cmd: mv /usr/lib/python3.11/EXTERNALLY-MANAGED 
+        /usr/lib/python3.11/EXTERNALLY-MANAGED.old
+    args:
+      creates: /usr/lib/python3.11/EXTERNALLY-MANAGED.old
+    name: Rename python3.11 EXTERNALLY-MANAGED file if it exists
+    when: externally_managed_file_py311.stat.exists
+  - ansible.builtin.stat:
+      path: /usr/lib/python3.12/EXTERNALLY-MANAGED
+    name: Check if python3.12 EXTERNALLY-MANAGED file exists
+    register: externally_managed_file_py312
+  - ansible.builtin.command:
+      cmd: mv /usr/lib/python3.12/EXTERNALLY-MANAGED 
+        /usr/lib/python3.12/EXTERNALLY-MANAGED.old
+    args:
+      creates: /usr/lib/python3.12/EXTERNALLY-MANAGED.old
+    name: Rename python3.12 EXTERNALLY-MANAGED file if it exists
+    when: externally_managed_file_py312.stat.exists
+  roles:
+  - role: buluma.systemd
+    systemd_default_target: multi-user.target
+  - role: buluma.httpd
+  - role: buluma.varnish
+  vars:
+    varnish_apt_use_packagecloud: false
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/buluma/ansible-role-varnish/blob/master/molecule/default/prepare.yml):
 
 ```yaml
 ---
-  - become: true
-    gather_facts: false
-    hosts: all
-    name: Prepare
-    roles:
-      - role: buluma.bootstrap
-    tasks:
-      - ansible.builtin.apt: update_cache=true cache_valid_time=600
-        name: Update apt cache.
-        when: ansible_os_family == 'Debian'
-      - ansible.builtin.yum:
-          name:
-            - logrotate
-            - systemd-sysv
-          state: present
-        name: Ensure build dependencies are installed.
-        when: ansible_os_family == 'RedHat'
-      - ansible.builtin.package: name=curl state=present
-        name: Ensure curl is installed.
+- become: true
+  gather_facts: false
+  hosts: all
+  name: Prepare
+  roles:
+  - role: buluma.bootstrap
+  tasks:
+  - ansible.builtin.apt: update_cache=true cache_valid_time=600
+    name: Update apt cache.
+    when: ansible_os_family == 'Debian'
+  - ansible.builtin.yum:
+      name:
+      - logrotate
+      - systemd-sysv
+      state: present
+    name: Ensure build dependencies are installed.
+    when: ansible_os_family == 'RedHat'
+  - ansible.builtin.package: name=curl state=present
+    name: Ensure curl is installed.
 ```
 
 Also see a [full explanation and example](https://buluma.github.io/how-to-use-these-roles.html) on how to use these roles.
@@ -96,7 +96,7 @@ varnish_default_backend_host: 127.0.0.1
 varnish_default_backend_port: "8080"
 varnish_default_vcl_template_path: default.vcl.j2
 varnish_enabled_services:
-  - varnish
+- varnish
 varnish_limit_nofile: 131072
 varnish_listen_address: ""
 varnish_listen_port: "80"
