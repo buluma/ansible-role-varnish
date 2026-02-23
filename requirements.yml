@@ -1,7 +1,8 @@
+---
 collections:
-- name: community.general
+  - name: community.general
 roles:
-- name: buluma.bootstrap
-- name: buluma.systemd
-- name: buluma.core_dependencies
-- name: buluma.httpd
+  - name: buluma.bootstrap
+  - name: buluma.systemd
+  - name: buluma.core_dependencies
+  - name: buluma.httpd
