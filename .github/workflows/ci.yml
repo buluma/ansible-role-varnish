@@ -12,7 +12,7 @@ jobs:
       with:
         path: buluma.varnish
     - name: Set up Python 3.
-      uses: actions/setup-python@v6.1.0
+      uses: actions/setup-python@v6.2.0
       with:
         python-version: 3.x
     - name: Install test dependencies.
@@ -30,7 +30,7 @@ jobs:
       with:
         path: buluma.varnish
     - name: Set up Python 3.
-      uses: actions/setup-python@v6.1.0
+      uses: actions/setup-python@v6.2.0
       with:
         python-version: 3.x
     - name: Install test dependencies.
