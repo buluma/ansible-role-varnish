@@ -23,7 +23,8 @@
     owner: root
     src: varnish.j2
   notify: Restart varnish
-  when: '(ansible_os_family == ''RedHat'' and ansible_distribution_major_version|int < 7) or (ansible_os_family == ''Debian'' and ansible_distribution_release !=
+  when:
+    '(ansible_os_family == ''RedHat'' and ansible_distribution_major_version|int < 7) or (ansible_os_family == ''Debian'' and ansible_distribution_release !=
     "xenial")
 
     '
@@ -37,7 +38,8 @@
   notify:
     - Reload systemd
     - Restart varnish
-  when: '(ansible_os_family == ''RedHat'' and ansible_distribution_major_version|int >= 7) or (ansible_distribution == ''Debian'' and ansible_distribution_version|int
+  when:
+    '(ansible_os_family == ''RedHat'' and ansible_distribution_major_version|int >= 7) or (ansible_distribution == ''Debian'' and ansible_distribution_version|int
     >= 8) or (ansible_distribution == ''Ubuntu'' and ansible_distribution_version.split(".")[0]|int >= 16)
 
     '
@@ -48,7 +50,8 @@
     mode: "0644"
     owner: root
     src: varnish.params.j2
-  when: '(ansible_os_family == ''RedHat'' and ansible_distribution_major_version|int >= 7) or (ansible_os_family == ''Debian'' and ansible_distribution_release ==
+  when:
+    '(ansible_os_family == ''RedHat'' and ansible_distribution_major_version|int >= 7) or (ansible_os_family == ''Debian'' and ansible_distribution_release ==
     "xenial")
 
     '
@@ -74,7 +77,8 @@
     enabled: true
     name: "{{ item }}"
     state: started
-  when: 'varnish_enabled_services and (ansible_os_family != ''Debian'' or (ansible_os_family != ''Debian'' and ansible_distribution_release != "xenial"))
+  when:
+    'varnish_enabled_services and (ansible_os_family != ''Debian'' or (ansible_os_family != ''Debian'' and ansible_distribution_release != "xenial"))
 
     '
   with_items: "{{ varnish_enabled_services | default([]) }}"
