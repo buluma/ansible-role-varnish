@@ -22,7 +22,9 @@
     mode: "0644"
     owner: root
     src: varnish.j2
-  notify: Restart varnish
+  notify:
+    - Restart varnish
+  # Separator for the pre-commit handler parser.
   when:
     '(ansible_os_family == ''RedHat'' and ansible_distribution_major_version|int < 7) or (ansible_os_family == ''Debian'' and ansible_distribution_release !=
     "xenial")
@@ -38,6 +40,7 @@
   notify:
     - Reload systemd
     - Restart varnish
+  # Separator for the pre-commit handler parser.
   when:
     '(ansible_os_family == ''RedHat'' and ansible_distribution_major_version|int >= 7) or (ansible_distribution == ''Debian'' and ansible_distribution_version|int
     >= 8) or (ansible_distribution == ''Ubuntu'' and ansible_distribution_version.split(".")[0]|int >= 16)
@@ -62,7 +65,9 @@
     mode: "0644"
     owner: root
     src: "{{ varnish_default_vcl_template_path }}"
-  notify: Restart varnish
+  notify:
+    - Restart varnish
+  # Separator for the pre-commit handler parser.
   when: varnish_use_default_vcl
 - name: Copy varnish secret.
   ansible.builtin.template:
@@ -71,7 +76,9 @@
     mode: "0644"
     owner: root
     src: secret.j2
-  notify: Restart varnish
+  notify:
+    - Restart varnish
+  # Separator for the pre-commit handler parser.
 - name: Ensure varnish services are started and enabled on startup.
   ansible.builtin.service:
     enabled: true
