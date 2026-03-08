@@ -85,14 +85,14 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 
 ```yaml
 ---
-varnish_admin_listen_host: 127.0.0.1
+varnish_admin_listen_host: "127.0.0.1"
 varnish_admin_listen_port: "6082"
 varnish_apt_repo:
   deb https://packagecloud.io/varnishcache/{{ varnish_packagecloud_repo }}/packages/{{ ansible_distribution | lower }}/ {{
   ansible_distribution_release }} main
 varnish_apt_use_packagecloud: true
 varnish_config_path: /etc/varnish
-varnish_default_backend_host: 127.0.0.1
+varnish_default_backend_host: "127.0.0.1"
 varnish_default_backend_port: "8080"
 varnish_default_vcl_template_path: default.vcl.j2
 varnish_enabled_services:
@@ -108,7 +108,7 @@ varnish_secret: 14bac2e6-1e34-4770-8078-974373b76c90
 varnish_storage: file,/var/lib/varnish/varnish_storage.bin,256M
 varnish_use_default_vcl: true
 varnish_version: "7.5"
-varnish_yum_repo_baseurl: https://packagecloud.io/varnishcache/{{ varnish_packagecloud_repo }}/el/{{ ansible_distribution_major_version | int }}/$basearch
+varnish_yum_repo_baseurl: "https://packagecloud.io/varnishcache/{{ varnish_packagecloud_repo }}/el/{{ ansible_distribution_major_version | int }}/$basearch"
 varnishd_extra_options: ""
 ```
 
@@ -159,3 +159,4 @@ If you find issues, please register them on [GitHub](https://github.com/buluma/a
 ## [Author Information](#author-information)
 
 [buluma](https://buluma.github.io/)
+
