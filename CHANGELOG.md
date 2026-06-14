@@ -1,13 +1,19 @@
 # Changelog
 
-## [Unreleased](https://github.com/buluma/ansible-role-varnish/tree/HEAD)
+## [v26.6.0](https://github.com/buluma/ansible-role-varnish/tree/v26.6.0) (2026-06-14)
 
-[Full Changelog](https://github.com/buluma/ansible-role-varnish/compare/v24.3.31...HEAD)
+[Full Changelog](https://github.com/buluma/ansible-role-varnish/compare/v24.3.31...v26.6.0)
 
 **Closed issues:**
 
 - Update action [\#29](https://github.com/buluma/ansible-role-varnish/issues/29)
 - rebuild action [\#28](https://github.com/buluma/ansible-role-varnish/issues/28)
+
+**Merged pull requests:**
+
+- Bump docker/setup-buildx-action from 3 to 4 [\#43](https://github.com/buluma/ansible-role-varnish/pull/43) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump actions/setup-python from 5.1.0 to 6.2.0 [\#40](https://github.com/buluma/ansible-role-varnish/pull/40) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump actions/checkout from 4 to 6 [\#39](https://github.com/buluma/ansible-role-varnish/pull/39) ([dependabot[bot]](https://github.com/apps/dependabot))
 
 ## [v24.3.31](https://github.com/buluma/ansible-role-varnish/tree/v24.3.31) (2024-03-31)
 
