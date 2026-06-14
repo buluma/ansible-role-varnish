@@ -1,11 +1,13 @@
 ---
 - become: true
   gather_facts: false
+- name: Verify
   hosts: all
   name: Verify
   tasks:
     - changed_when: false
       command: varnishd -V
+      changed_when: false
       name: check the installed varnish version.
       register: varnish_version_output
       tags:
@@ -13,5 +15,6 @@
     - changed_when: false
       name: Verify Varnish is running on port 80.
       shell: 'curl -sI localhost:80 | grep -q "Via: .* varnish"'
+      changed_when: false
       tags:
         - skip_ansible_lint
