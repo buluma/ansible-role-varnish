@@ -1,9 +1,8 @@
 ---
-- become: true
-  gather_facts: true
 - name: Converge
   hosts: all
-  name: Converge
+  become: true
+  gather_facts: true
   pre_tasks:
     - apt: update_cache=yes cache_valid_time=600
       changed_when: false
