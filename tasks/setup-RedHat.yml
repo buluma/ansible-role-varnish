@@ -22,10 +22,10 @@
     sslcacert: /etc/pki/tls/certs/ca-bundle.crt
     sslverify: 1
   register: varnish_packagecloud_repo_addition
-- ansible.builtin.command: "yum -q makecache -y --disablerepo='*' --enablerepo='varnishcache_{{ varnish_packagecloud_repo }}'\n"
-  name: setup-RedHat | Refresh yum metadata cache if repo changed.
-  tags:
-    - skip_ansible_lint
+- name: setup-RedHat | Refresh yum metadata cache if repo changed.
+  ansible.builtin.command:
+    cmd: "yum -q makecache -y --disablerepo='*' --enablerepo='varnishcache_{{ varnish_packagecloud_repo }}'"
+  changed_when: true
   when: varnish_packagecloud_repo_addition.changed
 - name: setup-RedHat | Ensure Varnish is installed.
   ansible.builtin.dnf:
