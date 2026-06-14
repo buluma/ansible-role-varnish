@@ -8,9 +8,10 @@
       - curl
     state: present
 - name: setup-Debian | Add packagecloud.io varnish apt key.
-  ansible.builtin.apt_key:
-    state: present
+  ansible.builtin.get_url:
     url: https://packagecloud.io/varnishcache/{{ varnish_packagecloud_repo }}/gpgkey
+    dest: /etc/apt/trusted.gpg.d/varnish.asc
+    mode: "0644"
 - name: setup-Debian | Add packagecloud.io varnish apt repository.
   ansible.builtin.apt_repository:
     repo: "{{ varnish_apt_repo }}"
