@@ -25,11 +25,7 @@
   notify:
     - Restart varnish
   # Separator for the pre-commit handler parser.
-  when:
-    '(ansible_facts['os_family'] == ''RedHat'' and ansible_facts['distribution_major_version']|int < 7) or (ansible_facts['os_family'] == ''Debian'' and ansible_facts['distribution_release'] !=
-    "xenial")
-
-    '
+  when: (ansible_facts['os_family'] == 'RedHat' and ansible_facts['distribution_major_version']|int < 7) or (ansible_facts['os_family'] == 'Debian' and ansible_facts['distribution_release'] != 'xenial')
 - name: Copy Debian Jessie/Xenial specific Varnish configs (systemd).
   ansible.builtin.template:
     dest: "{{ varnish_systemd_config_path }}/varnish.service"
@@ -41,11 +37,7 @@
     - Reload systemd
     - Restart varnish
   # Separator for the pre-commit handler parser.
-  when:
-    '(ansible_facts['os_family'] == ''RedHat'' and ansible_facts['distribution_major_version']|int >= 7) or (ansible_facts['distribution'] == ''Debian'' and ansible_facts['distribution_version']|int
-    >= 8) or (ansible_facts['distribution'] == ''Ubuntu'' and ansible_facts['distribution_version'].split(".")[0]|int >= 16)
-
-    '
+  when: (ansible_facts['os_family'] == 'RedHat' and ansible_facts['distribution_major_version']|int >= 7) or (ansible_facts['distribution'] == 'Debian' and ansible_facts['distribution_version']|int >= 8) or (ansible_facts['distribution'] == 'Ubuntu' and ansible_facts['distribution_version'].split('.')[0]|int >= 16)
 - name: Copy Varnish configuration (systemd).
   ansible.builtin.template:
     dest: "{{ varnish_config_path }}/varnish.params"
@@ -53,11 +45,7 @@
     mode: "0644"
     owner: root
     src: varnish.params.j2
-  when:
-    '(ansible_facts['os_family'] == ''RedHat'' and ansible_facts['distribution_major_version']|int >= 7) or (ansible_facts['os_family'] == ''Debian'' and ansible_facts['distribution_release'] ==
-    "xenial")
-
-    '
+  when: (ansible_facts['os_family'] == 'RedHat' and ansible_facts['distribution_major_version']|int >= 7) or (ansible_facts['os_family'] == 'Debian' and ansible_facts['distribution_release'] == 'xenial')
 - name: Copy Varnish default VCL.
   ansible.builtin.template:
     dest: "{{ varnish_config_path }}/default.vcl"
@@ -84,10 +72,7 @@
     enabled: true
     name: "{{ item }}"
     state: started
-  when:
-    'varnish_enabled_services and (ansible_facts['os_family'] != ''Debian'' or (ansible_facts['os_family'] != ''Debian'' and ansible_facts['distribution_release'] != "xenial"))
-
-    '
+  when: varnish_enabled_services and (ansible_facts['os_family'] != 'Debian' or (ansible_facts['os_family'] != 'Debian' and ansible_facts['distribution_release'] != 'xenial'))
   with_items: "{{ varnish_enabled_services | default([]) }}"
 - name: Ensure varnish services are started and enabled on startup (Xenial specific)
   ansible.builtin.service:
