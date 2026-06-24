@@ -22,4 +22,10 @@ galaxy_info:
     - name: Debian
       versions:
         - all
+    - name: EL
+      versions:
+        - all
+    - name: Fedora
+      versions:
+        - all
   role_name: varnish
