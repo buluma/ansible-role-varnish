@@ -10,6 +10,8 @@ exclude_paths:
   - molecule/default/collections.yml
   - .cache
   - .github
+  - .ansible/
+  - .ansible/**
   - requirements.yml
 
 enable_list:
