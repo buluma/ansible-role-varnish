@@ -3,18 +3,13 @@
   hosts: all
   become: true
   gather_facts: false
+
+  pre_tasks:
+    - name: Install sudo if missing
+      ansible.builtin.raw: "{{ ansible_pkg_mgr | default('dnf') }} install -y sudo"
+      become: false
+      changed_when: false
+      failed_when: false
+
   roles:
     - role: buluma.bootstrap
-  tasks:
-    - ansible.builtin.apt: update_cache=true cache_valid_time=600
-      name: Update apt cache.
-      when: ansible_facts['os_family'] == 'Debian'
-    - ansible.builtin.yum:
-        name:
-          - logrotate
-          - systemd-sysv
-        state: present
-      name: Ensure build dependencies are installed.
-      when: ansible_facts['os_family'] == 'RedHat'
-    - ansible.builtin.package: name=curl state=present
-      name: Ensure curl is installed.
