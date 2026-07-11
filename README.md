@@ -12,15 +12,15 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 
 ```yaml
 ---
-- become: true
-  gather_facts: true
+- name: Converge
   hosts: all
-  name: Converge
+  become: true
+  gather_facts: true
   pre_tasks:
     - apt: update_cache=yes cache_valid_time=600
       changed_when: false
       name: Update apt cache.
-      when: ansible_os_family == 'Debian'
+      when: ansible_facts['os_family'] == 'Debian'
     - ansible.builtin.stat:
         path: /usr/lib/python3.11/EXTERNALLY-MANAGED
       name: Check if python3.11 EXTERNALLY-MANAGED file exists
@@ -56,25 +56,20 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 
 ```yaml
 ---
-- become: true
-  gather_facts: false
+- name: Prepare
   hosts: all
-  name: Prepare
+  become: true
+  gather_facts: false
+
+  pre_tasks:
+    - name: Install sudo if missing
+      ansible.builtin.raw: "{{ ansible_pkg_mgr | default('dnf') }} install -y sudo"
+      become: false
+      changed_when: false
+      failed_when: false
+
   roles:
     - role: buluma.bootstrap
-  tasks:
-    - ansible.builtin.apt: update_cache=true cache_valid_time=600
-      name: Update apt cache.
-      when: ansible_os_family == 'Debian'
-    - ansible.builtin.yum:
-        name:
-          - logrotate
-          - systemd-sysv
-        state: present
-      name: Ensure build dependencies are installed.
-      when: ansible_os_family == 'RedHat'
-    - ansible.builtin.package: name=curl state=present
-      name: Ensure curl is installed.
 ```
 
 Also see a [full explanation and example](https://buluma.github.io/how-to-use-these-roles.html) on how to use these roles.
@@ -88,8 +83,8 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 varnish_admin_listen_host: "127.0.0.1"
 varnish_admin_listen_port: "6082"
 varnish_apt_repo:
-  deb https://packagecloud.io/varnishcache/{{ varnish_packagecloud_repo }}/packages/{{ ansible_distribution | lower }}/ {{
-  ansible_distribution_release }} main
+  deb https://packagecloud.io/varnishcache/{{ varnish_packagecloud_repo }}/packages/{{ ansible_facts['distribution'] | lower }}/ {{
+  ansible_facts['distribution_release'] }} main
 varnish_apt_use_packagecloud: true
 varnish_config_path: /etc/varnish
 varnish_default_backend_host: "127.0.0.1"
@@ -108,7 +103,7 @@ varnish_secret: 14bac2e6-1e34-4770-8078-974373b76c90
 varnish_storage: file,/var/lib/varnish/varnish_storage.bin,256M
 varnish_use_default_vcl: true
 varnish_version: "7.5"
-varnish_yum_repo_baseurl: "https://packagecloud.io/varnishcache/{{ varnish_packagecloud_repo }}/el/{{ ansible_distribution_major_version | int }}/$basearch"
+varnish_yum_repo_baseurl: "https://packagecloud.io/varnishcache/{{ varnish_packagecloud_repo }}/el/{{ ansible_facts['distribution_major_version'] | int }}/$basearch"
 varnishd_extra_options: ""
 ```
 
@@ -137,12 +132,14 @@ Here is an overview of related roles:
 
 ## [Compatibility](#compatibility)
 
-This role has been tested on these [container images](https://hub.docker.com/u/robertdebock):
+This role has been tested on these [container images](https://hub.docker.com/u/buluma):
 
 |container|tags|
 |---------|----|
-|[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
-|[Debian](https://hub.docker.com/r/robertdebock/debian)|all|
+|[EL](https://hub.docker.com/r/buluma/docker-molecule-images)|all|
+|[Debian](https://hub.docker.com/r/buluma/docker-molecule-images)|all|
+|[Fedora](https://hub.docker.com/r/buluma/docker-molecule-images)|all|
+|[Ubuntu](https://hub.docker.com/r/buluma/docker-molecule-images)|all|
 
 The minimum version of Ansible required is 2.12, tests have been done on:
 
@@ -160,6 +157,3 @@ If you find issues, please register them on [GitHub](https://github.com/buluma/a
 
 [buluma](https://buluma.github.io/)
 
-### Get Help
-- Report issues: https://github.com/buluma/ansible-role-varnish/issues/new
-- See docs: https://docs.ansible.com/collection/gallery/ansible-role-varnish
