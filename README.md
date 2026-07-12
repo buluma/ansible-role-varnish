@@ -82,8 +82,7 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 ---
 varnish_admin_listen_host: "127.0.0.1"
 varnish_admin_listen_port: "6082"
-varnish_apt_repo:
-  deb https://packagecloud.io/varnishcache/{{ varnish_packagecloud_repo }}/packages/{{ ansible_facts['distribution'] | lower }}/ {{
+varnish_apt_repo: deb https://packagecloud.io/varnishcache/{{ varnish_packagecloud_repo }}/packages/{{ ansible_facts['distribution'] | lower }}/ {{
   ansible_facts['distribution_release'] }} main
 varnish_apt_use_packagecloud: true
 varnish_config_path: /etc/varnish
