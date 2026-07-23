@@ -34,6 +34,7 @@
     - role: buluma.systemd
       systemd_default_target: multi-user.target
     - role: buluma.httpd
+    - role: buluma.epel
     - role: buluma.varnish
   vars:
     varnish_apt_use_packagecloud: false
