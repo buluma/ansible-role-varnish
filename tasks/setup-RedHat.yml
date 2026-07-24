@@ -33,4 +33,4 @@
   ansible.builtin.dnf:
     name: "{{ varnish_modules_package_name }}"
     state: present
-  when: varnish_modules_package_name
+  when: varnish_modules_package_name | length > 0
