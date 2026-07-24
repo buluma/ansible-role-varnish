@@ -33,7 +33,10 @@
   roles:
     - role: buluma.systemd
       systemd_default_target: multi-user.target
-    - role: buluma.httpd
+    # varnish listens on 80 (varnish_listen_port) and proxies to httpd on
+    # varnish_default_backend_port (8080) - httpd must not also claim 80.
+    - httpd_port: 8080
+      role: buluma.httpd
     - role: buluma.epel
     - role: buluma.varnish
   vars:
