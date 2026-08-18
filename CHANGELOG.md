@@ -6,6 +6,7 @@
 
 **Merged pull requests:**
 
+- chore\(deps\): bump ansible/ansible-lint from 26.6.0 to 26.8.0 [\#49](https://github.com/buluma/ansible-role-varnish/pull/49) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump release-drafter/release-drafter from 7 to 7.6.0 [\#48](https://github.com/buluma/ansible-role-varnish/pull/48) ([dependabot[bot]](https://github.com/apps/dependabot))
 
 ## [v26.6.2](https://github.com/buluma/ansible-role-varnish/tree/v26.6.2) (2026-07-24)
