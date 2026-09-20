@@ -23,6 +23,7 @@
     sslverify: 1
   register: varnish_packagecloud_repo_addition
   notify: Refresh varnish yum metadata cache
+# Separator for the pre-commit handler parser.
 - name: setup-RedHat | Flush handlers so the yum cache is fresh before install.
   ansible.builtin.meta: flush_handlers
 - name: setup-RedHat | Ensure Varnish is installed.
