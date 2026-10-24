@@ -123,8 +123,8 @@ varnish_pidfile: /run/varnishd.pid
 varnish_secret: 14bac2e6-1e34-4770-8078-974373b76c90
 varnish_storage: file,/var/lib/varnish/varnish_storage.bin,256M
 varnish_use_default_vcl: true
-varnish_version: "7.5"
-varnish_yum_repo_baseurl: "https://packagecloud.io/varnishcache/{{ varnish_packagecloud_repo }}/el/{{ ansible_facts['distribution_major_version'] | int }}/$basearch"
+varnish_version: "9.1"
+varnish_yum_repo_baseurl: "{{ varnish_repository_base_url }}/el/{{ ansible_facts['distribution_major_version'] | int }}/$basearch"
 varnishd_extra_options: ""
 ```
 
@@ -177,3 +177,5 @@ If you find issues, please register them on [GitHub](https://github.com/buluma/a
 ## [Author Information](#author-information)
 
 [buluma](https://buluma.github.io/)
+
+The default repository line now targets Varnish 9.1 (current upstream release 9.1.0). Varnish 9+ uses `https://packages.varnish-software.com/varnish`; the former Packagecloud `varnish91` repository does not exist. `varnish_repository_base_url` and `varnish_repository_key_url` select the current upstream base/key for 9+ and retain Packagecloud URLs for explicit older-line overrides. As before, `varnish_version` selects a repository line, not an exact patch package version. Supported platforms and VCL/VMOD compatibility must be reviewed before upgrading existing servers.
