@@ -14,11 +14,11 @@
     description: Varnish Cache packagecloud.io repository.
     enabled: true
     gpgcheck: false
-    gpgkey: https://packagecloud.io/varnishcache/{{ varnish_packagecloud_repo }}/gpgkey
+    gpgkey: "{{ varnish_repository_key_url }}"
     module_hotfixes: true
     name: varnishcache_{{ varnish_packagecloud_repo }}
     priority: "{{ varnish_packagecloud_repo_yum_repository_priority }}"
-    repo_gpgcheck: false
+    repo_gpgcheck: "{{ varnish_version is version('9.0', '>=') }}"
     sslcacert: /etc/pki/tls/certs/ca-bundle.crt
     sslverify: 1
   register: varnish_packagecloud_repo_addition
