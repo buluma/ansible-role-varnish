@@ -30,7 +30,8 @@
   when: varnish_apt_use_packagecloud
 # varnish_apt_repo is a one-line "deb [options] URI SUITE [COMPONENT...]"
 # string, split here into the parts deb822_repository needs.
-- name: setup-Debian | Add packagecloud.io varnish apt repository.
+# The noqa is there because ansible-lint can't validate the templated types.
+- name: setup-Debian | Add packagecloud.io varnish apt repository.  # noqa: args[module]
   ansible.builtin.deb822_repository:
     name: "{{ _varnish_apt_repo_uri | regex_replace('[^A-Za-z0-9]+', '_') | trim('_') }}"
     types: "{{ _varnish_apt_repo_types }}"
