@@ -46,7 +46,11 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
   roles:
     - role: buluma.systemd
       systemd_default_target: multi-user.target
-    - role: buluma.httpd
+    # varnish listens on 80 (varnish_listen_port) and proxies to httpd on
+    # varnish_default_backend_port (8080) - httpd must not also claim 80.
+    - httpd_port: 8080
+      role: buluma.httpd
+    - role: buluma.epel
     - role: buluma.varnish
   vars:
     varnish_apt_use_packagecloud: false
@@ -104,8 +108,7 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 ---
 varnish_admin_listen_host: "127.0.0.1"
 varnish_admin_listen_port: "6082"
-varnish_apt_repo: deb https://packagecloud.io/varnishcache/{{ varnish_packagecloud_repo }}/packages/{{ ansible_facts['distribution'] | lower }}/ {{
-  ansible_facts['distribution_release'] }} main
+varnish_apt_repo: "deb {{ varnish_repository_base_url }}/{{ ansible_facts['distribution'] | lower }}/ {{ ansible_facts['distribution_release'] }} main"
 varnish_apt_use_packagecloud: true
 varnish_config_path: /etc/varnish
 varnish_default_backend_host: "127.0.0.1"
@@ -126,6 +129,10 @@ varnish_use_default_vcl: true
 varnish_version: "9.1"
 varnish_yum_repo_baseurl: "{{ varnish_repository_base_url }}/el/{{ ansible_facts['distribution_major_version'] | int }}/$basearch"
 varnishd_extra_options: ""
+
+# Varnish 9+ packages moved from Packagecloud to the upstream repository.
+varnish_repository_base_url: "{{ 'https://packages.varnish-software.com/varnish' if varnish_version is version('9.0', '>=') else 'https://packagecloud.io/varnishcache/' ~ varnish_packagecloud_repo }}"
+varnish_repository_key_url: "{{ varnish_repository_base_url ~ '/varnish.pub.asc' if varnish_version is version('9.0', '>=') else varnish_repository_base_url ~ '/gpgkey' }}"
 ```
 
 ## [Requirements](#requirements)
@@ -142,6 +149,7 @@ The following roles are used to prepare a system. You can prepare your system in
 |[buluma.systemd](https://galaxy.ansible.com/buluma/systemd)|[![Build Status GitHub](https://github.com/buluma/ansible-role-systemd/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-systemd/actions)|
 |[buluma.core_dependencies](https://galaxy.ansible.com/buluma/core_dependencies)|[![Build Status GitHub](https://github.com/buluma/ansible-role-core_dependencies/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-core_dependencies/actions)|
 |[buluma.httpd](https://galaxy.ansible.com/buluma/httpd)|[![Build Status GitHub](https://github.com/buluma/ansible-role-httpd/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-httpd/actions)|
+|[buluma.epel](https://galaxy.ansible.com/buluma/epel)|[![Build Status GitHub](https://github.com/buluma/ansible-role-epel/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-epel/actions)|
 
 ## [Context](#context)
 
@@ -177,5 +185,3 @@ If you find issues, please register them on [GitHub](https://github.com/buluma/a
 ## [Author Information](#author-information)
 
 [buluma](https://buluma.github.io/)
-
-The default repository line now targets Varnish 9.1 (current upstream release 9.1.0). Varnish 9+ uses `https://packages.varnish-software.com/varnish`; the former Packagecloud `varnish91` repository does not exist. `varnish_repository_base_url` and `varnish_repository_key_url` select the current upstream base/key for 9+ and retain Packagecloud URLs for explicit older-line overrides. As before, `varnish_version` selects a repository line, not an exact patch package version. Supported platforms and VCL/VMOD compatibility must be reviewed before upgrading existing servers.
